@@ -40,7 +40,7 @@ public class lesson4task {
                     System.out.println("Ничья");
                     return;
                 }
-                counting(DOT_X, tab);
+                blockThePlayersMove(DOT_X, tab);
                 // movePC(tab);
                 System.out.println("Ход противника");
                 for (int i = 0; i < 7; i++) {
@@ -59,7 +59,7 @@ public class lesson4task {
 
     }
 
-    private static boolean counting(char symbol, char[][] tab) {
+    private static boolean blockThePlayersMove(char symbol, char[][] tab) {
         symbol = DOT_X;
         for (int i = 0; i < tab.length; i++) {
             int line = 0, column = 0, diag1 = 0, diag2 = 0;
