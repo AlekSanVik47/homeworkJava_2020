@@ -2,26 +2,42 @@ package the.lesson.five;
 
 import java.util.ArrayList;
 
-public class Teacher extends Person {
+public class Teacher extends Person{
 
-    private ArrayList<StudentGroup> students;
+    private ArrayList<Group> groups;
+    private String subject;
 
-    public Teacher(String suname, String name, int age) {
-        super(suname, name, age);
-        students = new ArrayList<>();
+    public Teacher(String surname, String name) {
+        super(surname, name);
+        groups = new ArrayList<>();
     }
-    public ArrayList<StudentGroup> getStudents() {
-        return students;
+
+    public String getSubject() {
+        return subject;
     }
-    public void addStudent(StudentGroup student){
-        students.add(student);
+
+    public void setSubject(String subject) {
+        this.subject = subject;
+    }
+
+    public void addToGroup(Group group) {
+        groups.add(group);
+        group.addTeacher(this);
+    }
+
+    public ArrayList<Group> getGroups() {
+        return groups;
+    }
+
+    public ArrayList<Student> getStudents(Group group) {
+        return group.getStudents();
     }
 
     @Override
     public String toString() {
         return "Teacher{" +
                 "name='" + name + '\'' +
-                ", suname='" + suname + '\'' +
+                ", surname='" + surname + '\'' +
                 '}';
     }
 }

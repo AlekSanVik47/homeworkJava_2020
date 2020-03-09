@@ -2,20 +2,10 @@ package the.lesson.five;
 
 public class Person {
 
-    protected String name, suname;
-    private int age;
+    protected String name, surname;
 
-
-    public Person(String suname, String name, int age) {
+    public Person(String surname, String name) {
         this.name = name;
-        this.suname = suname;
-        this.age = age;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    protected void addStudent(Student student) {
+        this.surname = surname;
     }
 }
