@@ -39,5 +39,9 @@ public class Group {
     public void addStudent(Student student) {
         students.add(student);
     }
+<<<<<<< HEAD
 }
 
+=======
+}
+>>>>>>> origin/lessonFive
