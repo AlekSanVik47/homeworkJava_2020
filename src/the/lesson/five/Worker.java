@@ -23,6 +23,7 @@ public class Worker extends Employee {
     }
 
     public static void main(String[] args) {
+
         Worker[] workersArray = new Worker[5];
         workersArray[0] = new Worker("Иванов", "Иван", "Иванович", "главный инженер", "ivanov@mail.ru", 35, "89887352525", 35000L);
         workersArray[1] = new Worker("Петров", "Петр", "Сергеевич", "энергетик", "petrovv@mail.ru", 41, "89887352535", 32000L);
