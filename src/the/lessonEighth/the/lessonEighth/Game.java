@@ -1,29 +1,31 @@
-package the.lessonEighth;
+package the.lessonEighth.the.lessonEighth;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.KeyAdapter;
-import java.awt.event.KeyEvent;
 import java.util.Random;
 
 public class Game extends JFrame {
 
-    private int cnt = 0;
+    private int cnt = 0,  line = 0, column = 0, diag1 = 0, diag2 = 0;;
+    private static int size = 5;
+
+
 
     public Game() throws HeadlessException {
+
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
         setSize(600, 600);
         setLocation(300, 300);
+
         setVisible(true);
+
         //FlowLayout один за одним
         //BorderLayout EAST WEST CENTER
         //GridLayout row col
-        JPanel panel = new JPanel(new GridLayout(3, 3));
-        JButton[][] table = new JButton[3][3];
-        for (int i = 0; i < 3; i++) {
-            for (int j = 0; j < 3; j++) {
+        JPanel panel = new JPanel(new GridLayout(size, size));
+        JButton[][] table = new JButton[size][size];
+        for (int i = 0; i < size; i++) {
+            for (int j = 0; j < size; j++) {
                 table[i][j] = new JButton();
                 JButton copy = table[i][j];
                 copy.setIcon(new ImageIcon("/home/alexandervik/homeTask/src/the/lessonEighth/def.jpg"));
@@ -40,12 +42,12 @@ public class Game extends JFrame {
                             dialog.setResultMessage("Вы победили!");
                         }
                         cnt++;
-                        if (cnt == 9){
+                        if (cnt == size * size){
                             this.dispose();
                             AlertDialog dialog = new AlertDialog();
                             dialog.setResultMessage("НИЧЬЯ");
                         }
-                        if (cnt < 9) {
+                        if (cnt < size * size) {
                             movePC(table);
                         }
                     }
@@ -58,6 +60,8 @@ public class Game extends JFrame {
         setVisible(true);
     }
     static Random rnd = new Random();
+
+
 
     private  boolean isWin(String ch, JButton[][] tab) {
         for (int i = 0; i < tab.length; i++) {
@@ -75,7 +79,37 @@ public class Game extends JFrame {
         }
         return false;
     }
+    private void blockThePlayersMove(JButton[][] tab) {
 
+        while (true){
+        int x = rnd.nextInt(tab.length);
+        int y = rnd.nextInt(tab.length);
+        if (!tab[x][y].getText().equals("X") && !tab[x][y].getText().equals("o"))
+        
+
+
+                line += tab[x][y].equals("X") ? 1 : 0;
+                column += tab[y][x].equals("X") ? 1 : 0;
+                diag1 += tab[y][y].equals("X") ? 1 : 0;
+                diag2 += tab[y][tab.length - y - 1].equals("X") ? 1 : 0;
+
+                if (line == tab.length - 1 ) {
+                        tab[x][y].setText("o");
+                        if (column == tab.length - 1) {
+                            tab[y][x].setText("o");
+                            if (diag1 == tab.length - 1) {
+                                tab[y][y].setText("o");
+                                if (diag2 == tab.length - 1 ) {
+                                    tab[y][tab.length - y - 1].setText("o");
+                                }
+
+                            }
+                        }
+                        cnt++;
+                    }
+            movePC(tab);
+        }
+    }
     private void movePC(JButton[][] tab) {
         while (true) {
             int x = rnd.nextInt(tab.length), y = rnd.nextInt(tab.length);
@@ -98,6 +132,10 @@ public class Game extends JFrame {
     }
 
     public static void main(String[] args) {
+
+
         new Game();
     }
+
+
 }

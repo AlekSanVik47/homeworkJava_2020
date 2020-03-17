@@ -1,4 +1,4 @@
-package the.lessonEighth;
+package the.lessonEighth.the.lessonEighth;
 
 import javax.swing.*;
 import java.awt.*;
